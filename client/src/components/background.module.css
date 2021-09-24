@@ -1,0 +1,58 @@
+@keyframes float1 {
+    0% {margin-top: 10px;}
+    50% {margin-top: 40px;}
+    100% {margin-top: 10px}
+}
+
+@keyframes float2 {
+    0% {margin-bottom: 10px;}
+    50% {margin-bottom: 40px;}
+    100% {margin-bottom: 10px}
+}
+
+.shop {
+    position: absolute;
+    width: 90vw;
+    margin: auto;
+}
+
+#modalImage {
+    text-decoration: none;
+    /* min-width: 80px;
+    max-width: 800px;
+    min-height: 60px;
+    max-height: 600px; */
+}
+
+.wrapper {
+    position: fixed;
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.slice {
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
+    background-image: url("pizza-slice-vector.png");
+    background-size: cover;
+    animation-name: float1;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.pie {
+    width: 200px;
+    height: 200px;
+    margin-left: 50px;
+    background-image: url("pizza-pie-vector.png");
+    background-size: cover;
+    animation-name: float2;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
