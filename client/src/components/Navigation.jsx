@@ -3,26 +3,30 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Dropdown from 'react-bootstrap/Dropdown'
 import cart from '../cart-vector.png'
-import pizzaLogo from '../pizza-logo-temp.jpg' 
+import pizzaLogo from '../pizza-logo-temp.jpg'
+import styles from './background.module.css'
 
 
 const Navigation = () => {
     return (
-        <Navbar className="d-flex flex-row justify-content-between p-2" bg="light" expand="sm" style={{ width: "inherit" }} >
-            <Navbar.Brand href="/" >
+        <Navbar className="d-flex flex-row justify-content-between p-0" bg="light" expand="sm" style={{ width: "inherit" }} >
+            <Navbar.Brand href="/" className="p-0" >
                 <img 
                     src={pizzaLogo} 
-                    alt="p!zza logo"
-                    width="44px"
-                    height="44px"
+                    alt="pizza logo"
+                    width="50px"
+                    height="50px"
                     // className="d-inline-block align-top"
                     />
             </Navbar.Brand>
-            <div className="">
+            <div className={styles.title}>
+                <p style={{ margin: "0px", fontSize: "60px" }} >P ! Z Z A</p>
+            </div>
+            <div className="p-0">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="align-self-end" >
-                        <Nav.Link href="/">
+                        <Nav.Link href="/"  >
                             <img 
                                 src={cart} 
                                 alt="shopping cart icon" 
