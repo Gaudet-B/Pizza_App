@@ -115,9 +115,10 @@ const Toppings = props => {
                         }
                     </Form.Group>
                 </div>
-                <div className="d-flex flex-row p-2 text-light border border-light rounded me-3 ms-1 mt-2">
+                <div className="d-flex flex-column p-2 text-light border border-light rounded me-3 ms-1 mt-2">
+                    <h5 className="text-start" >Other:</h5>
+                    <div className="d-flex flex-row">
                     <Form.Group className="d-flex flex-column text-start col ms-2">
-                    <h5>Other:</h5>
                         {
                             allOther.slice(0, 4).map((item, idx) => {
                                 return(
@@ -131,7 +132,7 @@ const Toppings = props => {
                     </Form.Group>
                     <Form.Group className="d-flex flex-column text-start col ms-2">
                         {
-                            allOther.slice(3).map((item, idx) => {
+                            allOther.slice(4).map((item, idx) => {
                                 return(
                                     <Form.Check key={idx} type="checkbox" id={item} className="my-1">
                                         <Form.Check.Input onChange={otherHandler} type="checkbox" name={item} />
@@ -141,6 +142,7 @@ const Toppings = props => {
                             })
                         }
                     </Form.Group>
+                    </div>
                 </div>
             </Form>
         </div>

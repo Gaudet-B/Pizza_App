@@ -9,37 +9,39 @@ import styles from './background.module.css'
 
 const Navigation = () => {
     return (
-        <Navbar className="d-flex flex-row justify-content-between p-0" bg="light" expand="sm" style={{ width: "inherit" }} >
+        <Navbar className="d-flex flex-row justify-content-between p-0 border rounded" bg="light" style={{ width: "inherit", maxHeight: "62px", marginTop: "5px" }} >
             <Navbar.Brand href="/" className="p-0" >
                 <img 
                     src={pizzaLogo} 
                     alt="pizza logo"
                     width="50px"
                     height="50px"
+                    style={{ margin: "6px" }}
                     // className="d-inline-block align-top"
                     />
             </Navbar.Brand>
             <div className={styles.title}>
-                <p style={{ margin: "0px", fontSize: "60px" }} >P ! Z Z A</p>
+                <p style={{ margin: "0px", fontSize: "30px" }} >P ! Z Z A</p>
             </div>
             <div className="p-0">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="align-self-end" >
-                        <Nav.Link href="/"  >
+                        <Nav.Link href="/" style={{ padding: "0px" }} >
                             <img 
                                 src={cart} 
                                 alt="shopping cart icon" 
-                                height="40px"
-                                width="40px"
+                                height="35px"
+                                width="35px"
+                                style={{ marginTop: "10px" }}
                             />
                         </Nav.Link>
                         <Dropdown align="end">
                             <Dropdown.Toggle variant="light">
                                 <img 
                                 src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" 
-                                width="54px" 
-                                height="44px" 
+                                width="44px" 
+                                height="38px" 
                                 alt="hambuger icon" 
                                 className="btn btn-outline-light"
                                 />

@@ -34,6 +34,7 @@ function App() {
   return (
     <div className="App" style={{ maxWidth: "100vw" }}>
       <Background images={images} slice={sliceImg} pie={pieImg} />
+      <div style={{ maxWidth: "360px", margin: "auto" }}>
       <BrowserRouter>
         <Navigation />
         <Switch>
@@ -48,6 +49,7 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
+      </div>
     </div>
   );
 }

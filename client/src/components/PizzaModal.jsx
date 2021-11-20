@@ -49,14 +49,14 @@ const PizzaModal = props => {
     }
 
     return (
-        <div className="d-flex flex-column text-center align-items-center bg-light border rounded p-3" style={{ height: "fit-content", width: "55%", minWidth: "fit-content" }}>
+        <div className="d-flex flex-column text-center align-items-center bg-light border rounded flex-1" style={{ height: "fit-content", width: "55%" }}>
             <img className="rounded my-2"
                 src={pizzaLogo} 
                 alt="p!zza logo" 
-                height="200px"
-                width="200px"
+                height="195px"
+                width="195px"
             />
-            <Button variant="danger" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow} className="m-3">
                 Get Started
             </Button>
             <Modal show={show} onHide={handleClose}>
@@ -121,15 +121,20 @@ const PizzaModal = props => {
                     :
                         <p>Loading...</p>
                     }
-                <Modal.Footer>
+                <Modal.Footer className="d-flex flex-row justify-content-between">
                     <Button variant="outline-secondary" onClick={handleBack}>
                         Back
                     </Button>
                     {
                         (step === 4) ?
+                        <div className="d-flex flex-row">
+                        <Button variant="outline-danger" onClick={handleSubmit} className="mx-2">
+                            Add to Cart and Continue
+                        </Button>
                         <Button variant="danger" onClick={handleSubmit}>
                             Checkout
                         </Button>
+                        </div>
                         :
                         <Button variant="outline-danger" onClick={handleNext}>
                             Continue

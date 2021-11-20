@@ -9,10 +9,10 @@ const Shop = props => {
 
     return (
         <div className={styles.shop}>
-            <Container className="d-flex flex-row justify-content-evenly my-3 ps-5 pt-2" style={{ width: "100%" }}>
+            <Container className="d-flex flex-row justify-content-between my-3" style={{ width: "inherit", padding: "0px" }}>
                 {/* <Pizza /> */}
                 <PizzaModal order={order} setOrder={setOrder}/>
-                <Container className="d-flex flex-column" style={{ width: "40%" }}>
+                <Container className="d-flex flex-column flex-1" style={{ width: "40%", margin: "0px", padding: "0px" }} >
                     <div className="bg-light rounded p-2" style={{ height: "150px" }}>
                         <p className="fs-4">Future Content to come...</p>
                         <p>Suggestions</p>
