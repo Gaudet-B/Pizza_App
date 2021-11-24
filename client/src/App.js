@@ -43,7 +43,7 @@ function App() {
     }
   }
   
-  const defaultShoppingCart = [defaultOrder]
+  // const defaultShoppingCart = [defaultOrder]
   
   // const [order, setOrder] = useState(getSessionOrDefault('order', defaultOrder))
   // const [shoppingCart, setShoppingCart] = useState(getLocalOrDefault('shoppingCart', defaultShoppingCart))
@@ -56,8 +56,9 @@ function App() {
     const currentOrder = getSessionOrDefault("order", order)
     console.log(currentOrder)
     const currentCart = getLocalOrDefault("shoppingCart", shoppingCart)
+    currentCart.push(currentOrder)
     // setShoppingCart(shoppingCart => [...shoppingCart, sessionStorage.getItem("order")])
-    setShoppingCart(currentCart => [...currentCart, currentOrder])
+    setShoppingCart(currentCart)
     sessionStorage.removeItem("order")
     localStorage.setItem("shoppingCart", JSON.stringify(currentCart))
     // localStorage.setItem("shoppingCart", shoppingCart)
@@ -82,7 +83,7 @@ function App() {
       <Background images={images} slice={sliceImg} pie={pieImg} />
       <div style={{ maxWidth: "360px", margin: "auto" }}>
       <BrowserRouter>
-        <Navigation isEmpty={isEmpty}/>
+        <Navigation isEmpty={isEmpty} shoppingCart={getLocalOrDefault("shoppingCart", shoppingCart)} setShoppingCart={setShoppingCart}/>
         <Switch>
           <Route exact path="/" >
             <Landing />
