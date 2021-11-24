@@ -3,6 +3,9 @@ import Container from 'react-bootstrap/Container'
 import deepDish from '../deep-dish.jpg'
 import nyStyle from '../ny-style-temp.jpg'
 import sicilian from '../sicilian-crust-temp.png'
+import deepDishThumb from '../deepDish-crust-thumb.png'
+import nyStyleThumb from '../nyStyle-crust-thumb.png'
+import sicilianThumb from '../sicilian-crust-thumb.png'
 import CurrentCrust from './CurrentCrust'
 
 
@@ -24,15 +27,15 @@ const Crust = props => {
     const [allCrusts, setAllCrusts] = useState([
         {
             name: "NY Style",
-            image: nyStyle
+            image: nyStyleThumb
         },
         {
             name: "Deep Dish",
-            image: deepDish
+            image: deepDishThumb
         },
         {
             name: "Sicilian",
-            image: sicilian
+            image: sicilianThumb
         }
     ])
 
@@ -43,6 +46,7 @@ const Crust = props => {
                 ...order,
                 crust: e.target.id
             })
+            sessionStorage.setItem("order", JSON.stringify(order))
             e.target.style.backgroundColor = "rgba(143, 3, 3, 0.774)"
             e.target.lastChild.className = "text-light"
             if(e.target.id === e.target.parentNode.childNodes[0].id){
@@ -67,6 +71,7 @@ const Crust = props => {
                 ...order,
                 crust: e.target.parentNode.id
             })
+            sessionStorage.setItem("order", JSON.stringify(order))
             e.target.parentNode.style.backgroundColor = "rgba(143, 3, 3, 0.774)"
             e.target.parentNode.lastChild.className = "text-light"
             if(e.target.parentNode.id === e.target.parentNode.parentNode.childNodes[0].id){

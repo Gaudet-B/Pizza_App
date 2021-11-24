@@ -11,15 +11,57 @@ import Landing from './views/Landing'
 
 function App() {
 
-  const [order, setOrder] = useState({
+  // const [order, setOrder] = useState({
+  //   crust: "",
+  //   sauce: "",
+  //   toppings: {
+  //       cheese: [],
+  //       meat: [],
+  //       other: []
+  //   }
+  // })
+
+  
+  const getSessionOrDefault = (key, defaultValue) => {
+    const stored = sessionStorage.getItem(key)
+    if (!stored) return defaultValue
+    return JSON.parse(stored)
+  }
+  const getLocalOrDefault = (key, defaultValue) => {
+    const stored = localStorage.getItem(key)
+    if (!stored) return defaultValue
+    return JSON.parse(stored)
+  }
+  
+  const defaultOrder = {
     crust: "",
     sauce: "",
     toppings: {
-        cheese: [],
-        meat: [],
-        other: []
+      cheese: [],
+      meat: [],
+      other: []
     }
-  })
+  }
+  
+  const defaultShoppingCart = [defaultOrder]
+  
+  // const [order, setOrder] = useState(getSessionOrDefault('order', defaultOrder))
+  // const [shoppingCart, setShoppingCart] = useState(getLocalOrDefault('shoppingCart', defaultShoppingCart))
+  
+  const [isEmpty, setIsEmpty] = useState(false)
+  const [order, setOrder] = useState({})
+  const [shoppingCart, setShoppingCart] = useState([])
+
+  const addToShoppingCart = () => {
+    const currentOrder = getSessionOrDefault("order", order)
+    console.log(currentOrder)
+    const currentCart = getLocalOrDefault("shoppingCart", shoppingCart)
+    // setShoppingCart(shoppingCart => [...shoppingCart, sessionStorage.getItem("order")])
+    setShoppingCart(currentCart => [...currentCart, currentOrder])
+    sessionStorage.removeItem("order")
+    localStorage.setItem("shoppingCart", JSON.stringify(currentCart))
+    // localStorage.setItem("shoppingCart", shoppingCart)
+  }
 
   const images = []
 
@@ -28,24 +70,28 @@ function App() {
             images.push(sliceImg)
             images.push(pieImg)
         }
-        console.log(images)
-    })
+        let cart = localStorage.getItem("shoppingCart")
+        if (!cart || cart.length < 1) {
+          setIsEmpty(true)
+        }
+        // console.log(images)
+    }, [])
 
   return (
-    <div className="App" style={{ maxWidth: "100vw" }}>
+    <div className="App" style={{ maxWidth: "100vw", minWidth: "fit-content" }}>
       <Background images={images} slice={sliceImg} pie={pieImg} />
       <div style={{ maxWidth: "360px", margin: "auto" }}>
       <BrowserRouter>
-        <Navigation />
+        <Navigation isEmpty={isEmpty}/>
         <Switch>
           <Route exact path="/" >
             <Landing />
           </Route>
           <Route exact path="/shop" >
-            <Shop order={order} setOrder={setOrder}/>
+            <Shop order={order} setOrder={setOrder} shoppingCart={shoppingCart} setShoppingCart={setShoppingCart} addToShoppingCart={addToShoppingCart} getSessionOrDefault={getSessionOrDefault} getLocalOrDefault={getLocalOrDefault}/>
           </Route>
           <Route exact path="/checkout" >
-            <Checkout order={order} setOrder={setOrder}/>
+            <Checkout order={order} setOrder={setOrder} shoppingCart={shoppingCart} setShoppingCart={setShoppingCart} addToShoppingCart={addToShoppingCart} getSessionOrDefault={getSessionOrDefault} getLocalOrDefault={getLocalOrDefault}/>
           </Route>
         </Switch>
       </BrowserRouter>

@@ -3,7 +3,11 @@ import Container from "react-bootstrap/Container"
 import whiteSauce from '../white-sauce-temp.jpg'
 import pizzaSauce from '../pizza-sauce-temp.jpg'
 import marinaraSauce from '../marinara-sauce-temp.jpg'
+import whiteSauceThumb from '../white-sauce-thumb.png'
+import pizzaSauceThumb from '../pizza-sauce-thumb.png'
+import marinaraSauceThumb from '../marinara-sauce-thumb.png'
 import CurrentSauce from './CurrentSauce'
+import styles from './background.module.css'
 
 
 const Sauce = props => {
@@ -14,15 +18,15 @@ const Sauce = props => {
     const [allSauces, setAllSauces] = useState([
         {
             name: "Pizza Sauce",
-            image: pizzaSauce
+            image: pizzaSauceThumb
         },
         {
             name: "Marinara Sauce",
-            image: marinaraSauce
+            image: marinaraSauceThumb
         },
         {
             name: "White Sauce",
-            image: whiteSauce
+            image: whiteSauceThumb
         }
     ])
 
@@ -33,6 +37,7 @@ const Sauce = props => {
                 ...order,
                 sauce: e.target.id
             })
+            sessionStorage.setItem("order", JSON.stringify(order))
             e.target.style.backgroundColor = "rgba(143, 3, 3, 0.774)"
             e.target.lastChild.className = "text-light"
             if(e.target.id === e.target.parentNode.childNodes[0].id){
@@ -57,6 +62,7 @@ const Sauce = props => {
                 ...order,
                 sauce: e.target.parentNode.id
             })
+            sessionStorage.setItem("order", JSON.stringify(order))
             e.target.parentNode.style.backgroundColor = "rgba(143, 3, 3, 0.774)"
             e.target.parentNode.lastChild.className = "text-light"
             if(e.target.parentNode.id === e.target.parentNode.parentNode.childNodes[0].id){
@@ -78,34 +84,76 @@ const Sauce = props => {
         }
     }
 
-    return (
-        <Container className="rounded" >
-            <CurrentSauce sauce={currentSauce} />    
-            <div className="d-flex flex-row rounded" style={{ backgroundColor: "whitesmoke" }}>
-                {
-                    (allSauces) ?
-                    allSauces.map((sauce, idx) => {
-                        return(
-                            <div key={idx} id={sauce.name} onClick={changeHandler} className="d-flex flex-column text-center p-2 rounded" style={{ maxWidth: "33.33%", cursor: "pointer" }}>
-                                <img
-                                    id="childImg"
-                                    src={sauce.image}
-                                    alt={`${sauce.name} image`}
-                                    href="/"
-                                    height="120px"
-                                    width="inherit"
-                                    margin="auto"
-                                    className="rounded"
-                                />
-                                <p id="ignore" className="" >{sauce.name}</p>
-                            </div>
-                        )
-                    })
-                    : null
-                }
-            </div>
-        </Container>
-    )
+    if (order.crust === "Deep Dish") {
+
+        return (
+            <Container className="rounded" >
+                <CurrentSauce sauce={currentSauce} />    
+                <div className="d-flex flex-row rounded justify-content-evenly" style={{ backgroundColor: "whitesmoke" }}>
+                    {
+                        (allSauces) ?
+                        allSauces.map((sauce, idx) => {
+                            return(
+                                (idx === 0 || idx === 2) ?
+                                <div key={idx} id={sauce.name} className="d-flex flex-column text-center p-2 rounded" style={{ maxWidth: "33.33%", cursor: "pointer" }}>
+                                    <div id="mask" className={styles.bgImg}>
+                                    </div>
+                                    {/* <p id="ignore" className="" >{sauce.name}</p> */}
+                                </div>
+                                :
+                                <div key={idx} id={sauce.name} onClick={changeHandler} className="d-flex flex-column text-center p-2 rounded" style={{ maxWidth: "33.33%", cursor: "pointer" }}>
+                                    <img
+                                        id="childImg"
+                                        src={sauce.image}
+                                        alt={`${sauce.name} image`}
+                                        href="/"
+                                        height="120px"
+                                        width="inherit"
+                                        margin="auto"
+                                        className="rounded"
+                                    />
+                                    <p id="ignore" className="" >{sauce.name}</p>
+                                </div>
+                            )
+                        })
+                        : null
+                    }
+                </div>
+            </Container>
+        )
+
+    } else {
+
+        return (
+            <Container className="rounded" >
+                <CurrentSauce sauce={currentSauce} />    
+                <div className="d-flex flex-row rounded justify-content-evenly" style={{ backgroundColor: "whitesmoke" }}>
+                    {
+                        (allSauces) ?
+                        allSauces.map((sauce, idx) => {
+                            return(
+                                <div key={idx} id={sauce.name} onClick={changeHandler} className="d-flex flex-column text-center p-2 rounded" style={{ maxWidth: "33.33%", cursor: "pointer" }}>
+                                    <img
+                                        id="childImg"
+                                        src={sauce.image}
+                                        alt={`${sauce.name} image`}
+                                        href="/"
+                                        height="120px"
+                                        width="inherit"
+                                        margin="auto"
+                                        className="rounded"
+                                    />
+                                    <p id="ignore" className="" >{sauce.name}</p>
+                                </div>
+                            )
+                        })
+                        : null
+                    }
+                </div>
+            </Container>
+        )
+    }
+
 }
 
 export default Sauce

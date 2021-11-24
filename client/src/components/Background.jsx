@@ -67,7 +67,7 @@ const Background = props => {
     const {images, slice, pie} = props
 
     const imageGenerator = () => {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 9; i++) {
             images.push(styles.slice)
             images.push(styles.pie)
         }
@@ -84,7 +84,7 @@ const Background = props => {
         )
     }
 
-    const columns = [1,2,1,2,1,2,1,2,1,2,1,2,1,2,]
+    const columns = [1,2,1,2,1,2,1,2,1,2,1,2,1,2]
 
     return (
 

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "GretoonHighlight";
+    src: url(../fonts/GretoonHighlight.ttf);
+}
+
 @keyframes float1 {
     0% {margin-top: 10px;}
     50% {margin-top: 40px;}
@@ -42,19 +47,22 @@
 
 .title {
     height: inherit;
-    font-family: Flavors, sans-serif;
+    /* font-family: Flavors, sans-serif; */
+    font-family: GretoonHighlight, sans-serif;
     /* text-shadow: rgba(255, 255, 181, 0.877); */
-    color: rgba(133, 2, 2, 0.767);
-    font-size: 30em;
-    animation-name: text1;
+    /* color: rgba(133, 2, 2, 0.767); */
+    color: rgb(185, 3, 3);
+    /* font-size: 30em; */
+    /* animation-name: text1;
     animation-duration: 20s;
     animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out; */
 }
 
 .shop {
     position: absolute;
     max-width: 360px;
+    min-width: inherit;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -62,6 +70,30 @@
     /* padding-left: 10%; */
     /* padding-right: 10%; */
     /* padding-top: 28px; */
+}
+
+.modalImage {
+    background-image: url("../pizza-review-temp.png");
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    min-height: 280px;
+    min-width: 280px;
+    max-height: 55%;
+    max-width: 90%;
+    margin: auto;
+    position: relative;
+}
+
+.bgImg {
+    background-image: url("../pizza-sauce-thumb.png");
+    /* background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover; */
+    height: inherit;
+    width: inherit;
+    height: 120px;
+    margin: auto;
 }
 
 #modalImage {

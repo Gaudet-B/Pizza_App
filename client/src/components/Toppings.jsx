@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import pizzaLogo from '../pizza-logo-temp.jpg'
+import pizzaReview from '../pizza-review-temp.png'
 import styles from './background.module.css'
 
 
@@ -29,6 +30,7 @@ const Toppings = props => {
                 other: currentToppings.other
             }
         })
+        sessionStorage.setItem("order", JSON.stringify(order))
     }
 
     const meatHandler = e => {
@@ -47,6 +49,7 @@ const Toppings = props => {
                 other: currentToppings.other
             }
         })
+        sessionStorage.setItem("order", JSON.stringify(order))
     }
 
     const otherHandler = e => {
@@ -65,18 +68,19 @@ const Toppings = props => {
                 other: currentToppings.other
             }
         })
+        sessionStorage.setItem("order", JSON.stringify(order))
     }
 
     return (
         <div className="d-flex flex-column text-center rounded py-3 ps-2" style={{ backgroundColor: "rgba(143, 3, 3, 0.774)" }}>
             <div className={styles.modalImage} >
-                <img 
-                    src={pizzaLogo} 
+                {/* <img 
+                    src={pizzaReview} 
                     alt="p!zza logo"
                     height="280px"
                     width="80%"
                     className="rounded"
-                />
+                /> */}
             </div>
             <Form className="d-flex flex-column">
                 <div className="d-flex flex-row p-2 text-light mt-2 me-2">

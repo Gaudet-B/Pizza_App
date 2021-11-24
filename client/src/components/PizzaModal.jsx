@@ -13,10 +13,11 @@ import Toppings from './Toppings'
 
 const PizzaModal = props => {
 
-    const {order, setOrder} = props
+    const {order, setOrder, shoppingCart, setShoppingCart, addToShoppingCart, getSessionOrDefault, getLocalOrDefault} = props
 
     const [show, setShow] = useState(false)
     const [step, setStep] = useState(1)
+
     const history = useHistory()
 
     // const [order, setOrder] = useState({
@@ -45,7 +46,13 @@ const PizzaModal = props => {
     }
 
     const handleSubmit = () => {
+        addToShoppingCart()
         history.replace("/checkout")
+    }
+
+    const handleOrder = () => {
+        addToShoppingCart()
+        setStep(1)
     }
 
     return (
@@ -89,7 +96,7 @@ const PizzaModal = props => {
                             </Container>
                         </Modal.Header>
                         <Modal.Body>
-                            <Sauce order={order} setOrder={setOrder} />
+                            <Sauce order={order} setOrder={setOrder}/>
                         </Modal.Body>
                     </Container>
                     :
@@ -102,7 +109,7 @@ const PizzaModal = props => {
                             </Container>
                         </Modal.Header>
                         <Modal.Body>
-                            <Toppings order={order} setOrder={setOrder} />
+                            <Toppings order={order} setOrder={setOrder}/>
                         </Modal.Body>
                     </Container>
                     :
@@ -115,7 +122,7 @@ const PizzaModal = props => {
                             </Container>
                         </Modal.Header>
                         <Modal.Body>
-                            <Review order={order} setOrder={setOrder} />
+                            <Review order={order} setOrder={setOrder} shoppingCart={shoppingCart} setShoppingCart={setShoppingCart} />
                         </Modal.Body>
                     </Container>
                     :
@@ -128,8 +135,8 @@ const PizzaModal = props => {
                     {
                         (step === 4) ?
                         <div className="d-flex flex-row">
-                        <Button variant="outline-danger" onClick={handleSubmit} className="mx-2">
-                            Add to Cart and Continue
+                        <Button variant="outline-danger" onClick={handleOrder} className="mx-2">
+                            Add to Cart and Make Another!
                         </Button>
                         <Button variant="danger" onClick={handleSubmit}>
                             Checkout

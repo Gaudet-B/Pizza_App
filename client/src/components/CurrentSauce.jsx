@@ -10,7 +10,7 @@ const CurrentSauce = props => {
 
     return (
         <div className="d-flex flex-column text-center rounded py-3 ps-2" style={{ backgroundColor: "rgba(143, 3, 3, 0.774)" }}>
-            <div className={styles.modalImage} >
+            <div>
                 {
                     (sauce === "White Sauce") ?
                     <img 

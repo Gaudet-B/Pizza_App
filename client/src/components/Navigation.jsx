@@ -2,12 +2,17 @@ import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Dropdown from 'react-bootstrap/Dropdown'
-import cart from '../cart-vector.png'
+import emptyCart from '../shopping-cart-empty.png'
+import fullCart from '../shopping-cart-full.png'
+import burger from '../burger-menu.png'
 import pizzaLogo from '../pizza-logo-temp.jpg'
 import styles from './background.module.css'
 
 
-const Navigation = () => {
+const Navigation = props => {
+
+    const { isEmpty } = props
+
     return (
         <Navbar className="d-flex flex-row justify-content-between p-0 border rounded" bg="light" style={{ width: "inherit", maxHeight: "62px", marginTop: "5px" }} >
             <Navbar.Brand href="/" className="p-0" >
@@ -21,29 +26,42 @@ const Navigation = () => {
                     />
             </Navbar.Brand>
             <div className={styles.title}>
-                <p style={{ margin: "0px", fontSize: "30px" }} >P ! Z Z A</p>
+                <p style={{ margin: "0px", fontSize: "36px" }} >P!ZZA</p>
             </div>
             <div className="p-0">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="align-self-end" >
                         <Nav.Link href="/" style={{ padding: "0px" }} >
+                            {(!isEmpty) ?
                             <img 
-                                src={cart} 
+                                src={fullCart} 
                                 alt="shopping cart icon" 
-                                height="35px"
-                                width="35px"
-                                style={{ marginTop: "10px" }}
+                                height="30px"
+                                width="30px"
+                                // style={{ marginTop: "10px" }}
+                                className="me-2"
                             />
+                            :
+                            <img 
+                                src={emptyCart} 
+                                alt="shopping cart icon" 
+                                height="30px"
+                                width="30px"
+                                // style={{ marginTop: "10px" }}
+                                className="me-2"
+                            />
+                            }
                         </Nav.Link>
                         <Dropdown align="end">
-                            <Dropdown.Toggle variant="light">
+                            <Dropdown.Toggle variant="light" style={{ padding: "0px" }}>
                                 <img 
-                                src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" 
-                                width="44px" 
-                                height="38px" 
+                                // src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" 
+                                src={burger}
+                                width="35px" 
+                                height="30px" 
                                 alt="hambuger icon" 
-                                className="btn btn-outline-light"
+                                className="ms-1"
                                 />
                             </Dropdown.Toggle>
                             <Dropdown.Menu className="text-danger" bg="light">
